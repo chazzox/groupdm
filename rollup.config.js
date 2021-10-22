@@ -1,10 +1,10 @@
-import { name } from './package.json';
+import { name, homepage, version, repository } from './package.json';
 import path from 'path';
 import os from 'os';
 
 import { defineConfig } from 'rollup';
-import { babel } from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import typescript from 'rollup-plugin-typescript';
 import { terser } from 'rollup-plugin-terser';
 import styles from 'rollup-plugin-styles';
 
@@ -23,17 +23,17 @@ function GetBetterDiscordPath() {
 
 const meta = `
 /**
- * @name groupdm
+ * @name ${name}
  * @author chazzox#1001
- * @description Group your Dms and group chats separately
- * @version 0.0.1
- * @website https://github.com/chazzox/groupdm#readme
- * @source https://github.com/chazzox/groupdm
+ * @description Group your Dms and Group Chats separately
+ * @version ${version}
+ * @website ${homepage}
+ * @source ${repository.url}
  */
 `;
 
 export default defineConfig({
-	input: `src/${name}.jsx`,
+	input: `src/${name}.tsx`,
 	output: [
 		{
 			file: `plugin/${name}.plugin.js`,
@@ -59,10 +59,7 @@ export default defineConfig({
 				}
 			]
 		}),
-		// jsx transformer
-		babel({
-			presets: ['@babel/preset-react']
-		}),
+		typescript(),
 		// minifier
 		terser({
 			module: true,

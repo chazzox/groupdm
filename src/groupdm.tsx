@@ -27,19 +27,19 @@ function FilterButtons() {
 				className={`filterButtons ${isGroup == filter_mode.BOTH ? 'selected' : ''}`}
 				onClick={() => setIsGroupWithStore(filter_mode.BOTH)}
 			>
-				Both
+				All
 			</button>
 			<button
 				className={`filterButtons ${isGroup == filter_mode.DM ? 'selected' : ''}`}
 				onClick={() => setIsGroupWithStore(filter_mode.DM)}
 			>
-				DMs
+				Friends
 			</button>
 			<button
 				className={`filterButtons ${isGroup == filter_mode.GROUP ? 'selected' : ''}`}
 				onClick={() => setIsGroupWithStore(filter_mode.GROUP)}
 			>
-				Group
+				Groups
 			</button>
 		</>
 	);
@@ -49,7 +49,7 @@ function create_dom_container() {
 	const beforeEl = document.getElementsByClassName(siblingClassName)[0];
 	const buttonContainer = document.createElement('div');
 	buttonContainer.id = buttonContainerId;
-	beforeEl.insertAdjacentElement('beforebegin', buttonContainer);
+	beforeEl.insertAdjacentElement('afterend', buttonContainer);
 }
 
 async function render_filter_buttons() {

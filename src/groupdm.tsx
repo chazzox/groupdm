@@ -68,6 +68,7 @@ module.exports = class groupdm {
 		render_filter_buttons();
 	}
 	stop() {
+		document.getElementById(buttonContainerId).remove();
 		BdApi.clearCSS(cssId);
 	}
 	onSwitch() {

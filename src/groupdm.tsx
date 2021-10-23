@@ -6,6 +6,7 @@ const { React, ReactDOM } = BdApi;
 
 const siblingClassName = 'privateChannelsHeaderContainer-3NB1K1';
 const buttonContainerId = 'buttonFilterContainer';
+const currentChatId = 'currentChatContainer';
 const cssId = 'groupdm-filter';
 
 function FilterButtons() {
@@ -45,17 +46,34 @@ function FilterButtons() {
 	);
 }
 
+function CurrentChatHeader() {
+	return (
+		<>
+			<h2 id="currentChatHeader" className="privateChannelsHeaderContainer-3NB1K1 container-2ax-kl">
+				<span className="headerText-2F0828">Current Chat</span>
+			</h2>
+		</>
+	);
+}
+
 function create_dom_container() {
+	// Get header element
 	const beforeEl = document.getElementsByClassName(siblingClassName)[0];
+	// Insert filter container
 	const buttonContainer = document.createElement('div');
 	buttonContainer.id = buttonContainerId;
 	beforeEl.insertAdjacentElement('afterend', buttonContainer);
+	// Inesrt current Chat Header
+	const currentChatHeader = document.createElement('div');
+	currentChatHeader.id = currentChatId;
+	beforeEl.insertAdjacentElement('beforebegin', currentChatHeader);
 }
 
 async function render_filter_buttons() {
 	if (document.getElementsByClassName(siblingClassName)[0] && !document.getElementById(buttonContainerId)) {
 		create_dom_container();
 		ReactDOM.render(<FilterButtons />, document.getElementById(buttonContainerId));
+		ReactDOM.render(<CurrentChatHeader />, document.getElementById(currentChatId));
 	}
 }
 
@@ -69,6 +87,7 @@ module.exports = class groupdm {
 	}
 	stop() {
 		document.getElementById(buttonContainerId).remove();
+		document.getElementById(currentChatId).remove();
 		BdApi.clearCSS(cssId);
 	}
 	onSwitch() {

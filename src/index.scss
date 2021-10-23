@@ -42,9 +42,11 @@
 }
 .privateChannels-1nO12o {
 	.selected-aXhQR6.container-2Pjhx- {
-		position: absolute;
-		top: 140px;
-		width: 100%;
-		display: block !important;
+		&:not(#private-channels-0) {
+			position: absolute;
+			top: 140px;
+			width: 100%;
+			display: block !important;
+		}
 	}
 }

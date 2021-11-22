@@ -28,7 +28,7 @@
 
 	&.selected {
 		background-color: var(--bdfdb-blurple) !important;
-		color: white;
+		color: var(--interactive-selected);
 	}
 
 	&:hover {
